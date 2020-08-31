@@ -1,3 +1,5 @@
+package com.main;
+
 public class Usuarios {
     int id;
     String nombre;

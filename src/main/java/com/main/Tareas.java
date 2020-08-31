@@ -1,14 +1,16 @@
+package com.main;
+
 import java.util.Date;
 
 public class Tareas {
     int id;
     String titulo;
     String descripcion;
-    boolean estado; //0 NO prestado - 1 Prestado
+    String estado; //0 NO prestado - 1 Prestado
     String responsable;
     Date fechaCreacion;
 
-    public Tareas(String titulo, String descripcion, boolean estado, String responsable, Date fechaCreacion) {
+    public Tareas(String titulo, String descripcion, String estado, String responsable, Date fechaCreacion) {
         setTitulo(titulo);
         setDescripcion(descripcion);
         setEstado(estado);
@@ -36,11 +38,11 @@ public class Tareas {
         this.descripcion = descripcion;
     }
 
-    public boolean isEstado() {
+    public String isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

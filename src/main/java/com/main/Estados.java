@@ -1,3 +1,5 @@
+package com.main;
+
 public class Estados {
     int id;
     String nombre;
