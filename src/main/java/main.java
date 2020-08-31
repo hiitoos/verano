@@ -23,23 +23,23 @@ public class main {
         }while (n!=0);
     }
 
-    public void listarTareas(){
+    public static void listarTareas(){
 
     }
 
-    public void cambiarEstado(){
+    public static void cambiarEstado(){
 
     }
 
-    public void editarTarea(){
+    public static void editarTarea(){
 
     }
 
-    public void borrarTarea(){
+    public static void borrarTarea(){
 
     }
 
-    public void busqueda(){
+    public static void busqueda(){
 
     }
 
