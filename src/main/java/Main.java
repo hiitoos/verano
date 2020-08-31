@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class main {
+public class Main {
     static Scanner scanInt = new Scanner (System.in);
     static Scanner scanSt = new Scanner (System.in);
 
@@ -62,7 +62,6 @@ public class main {
 
         //Búsqueda por: Usuario o Coincidencia de Nombre.
     }
-
 
     //Funciones editar
     public static void editTitulo(){}
