@@ -33,6 +33,10 @@ public class Tareas {
 
     public Tareas(){}
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

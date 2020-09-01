@@ -1,5 +1,6 @@
 package com.main;
 
+import java.util.Iterator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,7 +21,14 @@ public class Hibernate {
         em.getTransaction().commit();
     }
 
-    public static List<Tareas> showT() {
+    public static void showT() {
+        List<Tareas> tareas = (List<Tareas>) em.createQuery("FROM Tareas").getResultList();
+        Iterator iter = tareas.iterator();
+        while (iter.hasNext())
+            System.out.println(iter.next());
+    }
+
+    public static List<Tareas> getTearea(){
         List<Tareas> tareas = (List<Tareas>) em.createQuery("FROM Tareas").getResultList();
         return tareas;
     }
@@ -43,9 +51,11 @@ public class Hibernate {
         em.getTransaction().commit();
     }
 
-    public static List<Estados> readEstado() {
+    public static void readEstado() {
         List<Estados> estados = (List<Estados>) em.createQuery("FROM Estados").getResultList();
-        return estados;
+        Iterator iter = estados.iterator();
+        while (iter.hasNext())
+            System.out.println(iter.next());
     }
 
     public static List<Tareas> buscarUsuario(String usuario) {

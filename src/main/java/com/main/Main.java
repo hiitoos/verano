@@ -17,7 +17,7 @@ public class Main {
             System.out.println("Selecciona una opción:\n1- Listar tarea\n2.- Crear tarea\n3.- Cambiar estado\n4.- Editar tarea\n5.- Borrar tarea\n6.- Búsqueda\n0.- Salir.");
             n= scanInt.nextInt();
             switch (n){
-                case 1 -> System.out.println(Hibernate.showT().toString());
+                case 1 -> Hibernate.showT();
                 case 2 -> crearTarea();
                 case 3 -> editarTarea(1);
                 case 4 -> editarTarea(2);
@@ -36,7 +36,7 @@ public class Main {
         System.out.println("Introduce descripcion");
         newTarea.setDescripcion(scanSt.nextLine());
         System.out.println("Introduce estado");
-        System.out.println(Hibernate.readEstado().toString());
+//        System.out.println(Hibernate.readEstado().toString());
         newTarea.setEstado(scanInt.nextInt());
         System.out.println("Introduce id responsable");
         System.out.println(Hibernate.showUser().toString());
@@ -47,7 +47,8 @@ public class Main {
     }
 
     public static void editarTarea(int valor){
-        tareas = Hibernate.showT();
+        Hibernate.showT();
+        tareas = Hibernate.getTearea();
         System.out.println("Introduce el ID de la tarea");
         id = scanInt.nextInt();
         if (valor==1){
@@ -56,6 +57,7 @@ public class Main {
             int estado = scanInt.nextInt();
             for (int i=0; i<tareas.size(); i++){
                 if (tareas.get(i).getId() == id){
+                    tareaActu.setId(tareas.get(i).getId());
                     tareaActu.setTitulo(tareas.get(i).getTitulo());
                     tareaActu.setDescripcion(tareas.get(i).getDescripcion());
                     tareaActu.setResponsable(tareas.get(i).getResponsable());
@@ -96,6 +98,7 @@ public class Main {
         }
         for (int i=0; i<tareas.size(); i++){
             if (tareas.get(i).getId() == id){
+                tareaActu.setId(tareas.get(i).getId());
                 tareaActu.setTitulo(tareas.get(i).getTitulo());
                 tareaActu.setDescripcion(tareas.get(i).getDescripcion());
                 tareaActu.setResponsable(tareas.get(i).getResponsable());
