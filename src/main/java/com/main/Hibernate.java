@@ -60,9 +60,12 @@ public class Hibernate {
             System.out.println(iter.next());
     }
 
-    public static List<Tareas> buscarUsuario(String usuario) {
-        List<Tareas> tareas = (List<Tareas>) em.createQuery("FROM Tareas WHERE (responsable LIKE '%"+usuario+"%')").getResultList();
-        return tareas;
+    public static void buscarUsuario(String usuario) {
+        List id = em.createQuery("select id FROM Usuarios WHERE nombre LIKE '%"+usuario+"%'").getResultList();
+        List<Tareas> tareas = (List<Tareas>) em.createQuery("FROM Tareas WHERE responsable = " + id.get(0)).getResultList();
+        Iterator iter = tareas.iterator();
+        while (iter.hasNext())
+            System.out.println(iter.next());
     }
 
     public static void close() {
