@@ -16,14 +16,14 @@ public class Tareas {
     private String titulo;
     @Column(name="descripcion")
     private String descripcion;
-    @Column(name="estado")
-    private String estado;
+    @Column(name="estado_id")
+    private int estado;
     @Column(name="responsable")
-    private String responsable;
+    private int responsable;
     @Column(name="fechaCreacion")
     private java.sql.Date fechaCreacion;
 
-    public Tareas(String titulo, String descripcion, String estado, String responsable, java.sql.Date fechaCreacion) {
+    public Tareas(String titulo, String descripcion, int estado, int responsable, java.sql.Date fechaCreacion) {
         setTitulo(titulo);
         setDescripcion(descripcion);
         setEstado(estado);
@@ -53,19 +53,19 @@ public class Tareas {
         this.descripcion = descripcion;
     }
 
-    public String isEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 
-    public String getResponsable() {
+    public int getResponsable() {
         return responsable;
     }
 
-    public void setResponsable(String responsable) {
+    public void setResponsable(int responsable) {
         this.responsable = responsable;
     }
 

@@ -1,6 +1,5 @@
 package com.main;
 
-import java.text.ParseException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,28 +14,26 @@ public class Hibernate {
         this.em = this.emf.createEntityManager();
     }
 
-    public void createTarea(String titulo, String descripcion, String estado, String responsable, java.sql.Date fecha) throws ParseException {
-        Tareas nuevaTarea = new Tareas(titulo, descripcion, estado, responsable, fecha);
-        this.em.getTransaction().begin();
-        this.em.persist(nuevaTarea);
-        this.em.getTransaction().commit();
+    public static void createTarea(Tareas newT) {
+        em.getTransaction().begin();
+        em.persist(newT);
+        em.getTransaction().commit();
     }
 
-    public void createTarea(Tareas newT) {
-        this.em.getTransaction().begin();
-        this.em.persist(newT);
-        this.em.getTransaction().commit();
-    }
-
-    public List<Tareas> showT() {
+    public static List<Tareas> showT() {
         List<Tareas> tareas = (List<Tareas>) em.createQuery("FROM tareas").getResultList();
         return tareas;
     }
 
-    public void updateTarea(Tareas tarea) {
-        this.em.getTransaction().begin();
-        this.em.merge(tarea);
-        this.em.getTransaction().commit();
+    public static List<Usuarios> showUser() {
+        List<Usuarios> users = (List<Usuarios>) em.createQuery("FROM usuarios").getResultList();
+        return users;
+    }
+
+    public static void updateTarea(Tareas tarea) {
+        em.getTransaction().begin();
+        em.merge(tarea);
+        em.getTransaction().commit();
     }
 
     public void deleteTarea(int id) {
@@ -46,18 +43,13 @@ public class Hibernate {
         this.em.getTransaction().commit();
     }
 
-    public List<Estados> readEstado() {
+    public static List<Estados> readEstado() {
         List<Estados> estados = (List<Estados>) em.createQuery("FROM estados").getResultList();
         return estados;
     }
 
-    public List<Tareas> buscarNombre(String target) {
-        List<Tareas> tareas = (List<Tareas>) em.createQuery("FROM tareas WHERE (responsable LIKE '%"+target+"%')").getResultList();
-        return tareas;
-    }
-
-    public List<Tareas> buscarDescripcion(String target) {
-        List<Tareas> tareas = (List<Tareas>) em.createQuery("FROM tareas WHERE (descripcion LIKE '%"+target+"%')").getResultList();
+    public static List<Tareas> buscarUsuario(String usuario) {
+        List<Tareas> tareas = (List<Tareas>) em.createQuery("FROM tareas WHERE (responsable LIKE '%"+usuario+"%')").getResultList();
         return tareas;
     }
 
