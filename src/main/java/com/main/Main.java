@@ -115,6 +115,8 @@ public class Main {
     }
 
     public static void borrarTarea(){
-
+        System.out.println("Introduce el ID de la tarea a borrar");
+        Hibernate.showT();
+        Hibernate.deleteTarea(scanInt.nextInt());
     }
 }

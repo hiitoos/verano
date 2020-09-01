@@ -36,11 +36,11 @@ public class Hibernate {
         em.getTransaction().commit();
     }
 
-    public void deleteTarea(int id) {
+    public static void deleteTarea(int id) {
         Tareas tarea =  em.find(Tareas.class, id);
-        this.em.getTransaction().begin();
-        this.em.remove(tarea);
-        this.em.getTransaction().commit();
+        em.getTransaction().begin();
+        em.remove(tarea);
+        em.getTransaction().commit();
     }
 
     public static List<Estados> readEstado() {
