@@ -12,6 +12,7 @@ public class Main {
     static List<Tareas> tareas;
     static Tareas tareaActu = new Tareas();
     public static void main(String[] args) {
+        Hibernate a = new Hibernate();
         do {
             System.out.println("Selecciona una opción:\n1- Listar tarea\n2.- Crear tarea\n3.- Cambiar estado\n4.- Editar tarea\n5.- Borrar tarea\n6.- Búsqueda\n0.- Salir.");
             n= scanInt.nextInt();
@@ -32,8 +33,10 @@ public class Main {
         Tareas newTarea = new Tareas();
         System.out.println("Introduce título");
         newTarea.setTitulo(scanSt.nextLine());
+        System.out.println("Introduce descripcion");
+        newTarea.setDescripcion(scanSt.nextLine());
         System.out.println("Introduce estado");
-        Hibernate.readEstado();
+        Hibernate.readEstado().toString();
         newTarea.setEstado(scanInt.nextInt());
         System.out.println("Introduce id responsable");
         Hibernate.showUser();

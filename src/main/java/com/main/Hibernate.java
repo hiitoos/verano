@@ -44,12 +44,12 @@ public class Hibernate {
     }
 
     public static List<Estados> readEstado() {
-        List<Estados> estados = (List<Estados>) em.createQuery("FROM estados").getResultList();
+        List<Estados> estados = (List<Estados>) em.createQuery("FROM Estados").getResultList();
         return estados;
     }
 
     public static List<Tareas> buscarUsuario(String usuario) {
-        List<Tareas> tareas = (List<Tareas>) em.createQuery("FROM tareas WHERE (responsable LIKE '%"+usuario+"%')").getResultList();
+        List<Tareas> tareas = (List<Tareas>) em.createQuery("FROM Tareas WHERE (responsable LIKE '%"+usuario+"%')").getResultList();
         return tareas;
     }
 

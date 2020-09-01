@@ -16,7 +16,7 @@ public class Tareas {
     private String titulo;
     @Column(name="descripcion")
     private String descripcion;
-    @Column(name="estado_id")
+    @Column(name="estados_id")
     private int estado;
     @Column(name="responsable")
     private int responsable;
