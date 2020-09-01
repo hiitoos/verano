@@ -61,8 +61,6 @@ public class Main {
             if (n==2) buscarNombre(scanSt.nextLine());
             else System.out.println("Opción incorrecta");
         }
-
-        //Búsqueda por: Usuario o Coincidencia de Nombre.
     }
 
     //Funciones editar
