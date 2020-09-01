@@ -17,7 +17,7 @@ public class Main {
             System.out.println("Selecciona una opción:\n1- Listar tarea\n2.- Crear tarea\n3.- Cambiar estado\n4.- Editar tarea\n5.- Borrar tarea\n6.- Búsqueda\n0.- Salir.");
             n= scanInt.nextInt();
             switch (n){
-                case 1 -> Hibernate.showT();
+                case 1 -> System.out.println(Hibernate.showT().toString());
                 case 2 -> crearTarea();
                 case 3 -> editarTarea(1);
                 case 4 -> editarTarea(2);
@@ -36,12 +36,12 @@ public class Main {
         System.out.println("Introduce descripcion");
         newTarea.setDescripcion(scanSt.nextLine());
         System.out.println("Introduce estado");
-        Hibernate.readEstado().toString();
+        System.out.println(Hibernate.readEstado().toString());
         newTarea.setEstado(scanInt.nextInt());
         System.out.println("Introduce id responsable");
-        Hibernate.showUser();
+        System.out.println(Hibernate.showUser().toString());
         newTarea.setResponsable(scanInt.nextInt());
-        System.out.println("Introduce fecha de creacion");
+        System.out.println("Introduce fecha de creacion(AAAA-MM-DD)");
         newTarea.setFechaCreacion(Date.valueOf(scanSt.nextLine()));
         Hibernate.createTarea(newTarea);
     }

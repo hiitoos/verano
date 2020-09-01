@@ -21,12 +21,12 @@ public class Hibernate {
     }
 
     public static List<Tareas> showT() {
-        List<Tareas> tareas = (List<Tareas>) em.createQuery("FROM tareas").getResultList();
+        List<Tareas> tareas = (List<Tareas>) em.createQuery("FROM Tareas").getResultList();
         return tareas;
     }
 
     public static List<Usuarios> showUser() {
-        List<Usuarios> users = (List<Usuarios>) em.createQuery("FROM usuarios").getResultList();
+        List<Usuarios> users = (List<Usuarios>) em.createQuery("FROM Usuarios").getResultList();
         return users;
     }
 
