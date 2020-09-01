@@ -33,9 +33,11 @@ public class Hibernate {
         return tareas;
     }
 
-    public static List<Usuarios> showUser() {
+    public static void showUser() {
         List<Usuarios> users = (List<Usuarios>) em.createQuery("FROM Usuarios").getResultList();
-        return users;
+        Iterator iter = users.iterator();
+        while (iter.hasNext())
+            System.out.println(iter.next());
     }
 
     public static void updateTarea(Tareas tarea) {
@@ -63,8 +65,8 @@ public class Hibernate {
         return tareas;
     }
 
-    public void close() {
-        this.emf.close();
-        this.em.close();
+    public static void close() {
+        emf.close();
+        em.close();
     }
 }
