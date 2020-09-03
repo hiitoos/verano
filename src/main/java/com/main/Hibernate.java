@@ -1,6 +1,5 @@
 package com.main;
 
-import java.util.Iterator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,7 +10,7 @@ public class Hibernate {
     private static EntityManagerFactory emf;
 
     public Hibernate() {
-        this.emf = Persistence.createEntityManagerFactory("TaskListPersistence");
+        this.emf = Persistence.createEntityManagerFactory("veranoPersistence");
         this.em = this.emf.createEntityManager();
     }
 

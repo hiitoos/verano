@@ -11,6 +11,7 @@ public class Main {
     static int n;
     static List<Tareas> tareas;
     static Tareas tareaActu = new Tareas();
+
     public static void main(String[] args) {
         Hibernate hb = new Hibernate();
         menu();
@@ -35,6 +36,7 @@ public class Main {
             }
         }while (n!=0);
     }
+
     public static void crearTarea(){
         Tareas newTarea = new Tareas();
         System.out.println("Introduce título");
@@ -126,7 +128,7 @@ public class Main {
         System.out.println("Introduce el nombre");
         Hibernate.buscarUsuario(scanSt.nextLine());
     }
-
+    
     public static void borrarTarea(){
         System.out.println("Introduce el ID de la tarea a borrar");
         Hibernate.showT();
