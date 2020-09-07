@@ -8,10 +8,10 @@
 
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>com.main.Estado</class>
-        <class>com.main.Login</class>
-        <class>com.main.Tarea</class>
-        <class>com.main.Usuario</class>
+        <class>com.main.application.domain.entities.Estado</class>
+        <class>com.main.application.domain.entities.Login</class>
+        <class>com.main.application.domain.entities.Tarea</class>
+        <class>com.main.application.domain.entities.Usuario</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

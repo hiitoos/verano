@@ -1,4 +1,4 @@
-package com.main;
+package com.main.application.domain.entities;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -11,6 +11,10 @@ public class Usuario {
     private String nombre;
     private String apellidos;
     private String email;
+    @OneToMany(mappedBy = "responsable")
+    private Set<Tarea> tareas;
+   // @OneToOne(mappedBy = "usuario_id")
+   // private Set<Login> usuario;
 
     public Usuario(String nombre, String apellidos, String email) {
         setNombre(nombre);
@@ -52,8 +56,7 @@ public class Usuario {
         this.email = email;
     }
 
-    @OneToMany(mappedBy = "responsable")
-    private Set<Tarea> tareas;
+
 
     public Iterable<Tarea> getTareas(){
         return tareas;

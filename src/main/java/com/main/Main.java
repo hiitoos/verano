@@ -1,5 +1,8 @@
 package com.main;
 
+import com.main.application.domain.entities.Tarea;
+import com.main.application.repositories.Hibernate;
+
 import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -51,12 +54,12 @@ public class Main {
         newTarea.setResponsable(scanInt.nextInt());
         System.out.println("Introduce fecha de creacion(AAAA-MM-DD)");
         newTarea.setFechaCreacion(Date.valueOf(scanSt.nextLine()));
-        Hibernate.createTarea(newTarea);
+        Hibernate.createUpdateTarea(newTarea);
     }
 
     public static void editarTarea(int valor){
         Hibernate.showT();
-        tareas = Hibernate.getTearea();
+        tareas = Hibernate.getTarea();
         System.out.println("Introduce el ID de la tarea");
         id = scanInt.nextInt();
         if (valor==1){
@@ -71,13 +74,13 @@ public class Main {
                     tareaActu.setResponsable(tareas.get(i).getResponsable());
                     tareaActu.setFechaCreacion(tareas.get(i).getFechaCreacion());
                     tareaActu.setEstado(estado);
-                    Hibernate.updateTarea(tareaActu);
+                    Hibernate.createUpdateTarea(tareaActu);
                 }
             }
         }
         else {
             do {
-                System.out.println("¿Qué quieres editar?\n1.- Título\n2.- Descripción\n3.- Responsable\n0.- Salir");
+                System.out.println("¿Qué quieres editar?\n1.- Título\n2.- Descripción\n3.- Responsable\n0.- Atras");
                 n = scanInt.nextInt();
                 switch (n) {
                     case 1 -> edit(1);
@@ -119,9 +122,10 @@ public class Main {
                     tareaActu.setDescripcion(nuevoValor);
                 if (valor==3)
                     tareaActu.setResponsable(user);
-                Hibernate.updateTarea(tareaActu);
+                Hibernate.createUpdateTarea(tareaActu);
             }
         }
+        menu();
     }
 
     public static void busqueda(){

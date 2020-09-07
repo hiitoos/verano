@@ -1,13 +1,14 @@
-package com.main;
+package com.main.application.domain.entities;
+
+import com.main.application.repositories.Hibernate;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name="tareas")
-public class Tarea {
+public class Tarea implements Serializable {
     @Id
     private int id;
     private String titulo;
