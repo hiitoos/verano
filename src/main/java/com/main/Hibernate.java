@@ -28,7 +28,6 @@ public class Hibernate {
     public static void showT() {
         CriteriaQuery<Tarea> q = cb.createQuery(Tarea.class);
         Root<Tarea> c = q.from(Tarea.class);
-        //Lo importante
         List<Tarea> tarList = em.createQuery(q).getResultList();
         for(Tarea trl : tarList){
             System.out.println(trl.toString());
@@ -36,8 +35,9 @@ public class Hibernate {
     }
 
     public static List<Tarea> getTearea(){
-        List<Tarea> tareas = (List<Tarea>) em.createQuery("FROM Tarea").getResultList();
-        return tareas;
+        CriteriaQuery<Tarea> q = cb.createQuery(Tarea.class);
+        Root<Tarea> c = q.from(Tarea.class);
+        return em.createQuery(q).getResultList();
     }
 
     public static void showUser() {
