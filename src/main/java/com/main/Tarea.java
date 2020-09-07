@@ -1,29 +1,32 @@
 package com.main;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="tareas")
-public class Tareas {
+public class Tarea {
     @Id
-    @Column(name="id")
     private int id;
-    @Column(name="titulo")
     private String titulo;
-    @Column(name="descripcion")
     private String descripcion;
-    @Column(name="estados_id")
+    @Column(name = "estados_id")
     private int estado;
-    @Column(name="responsable")
-    private int responsable;
-    @Column(name="fechaCreacion")
+
+    /*@ManyToOne
+    @JoinColumn(name = "responsable", nullable = true)
+    private Usuario usuario;*/
+
+    @ManyToOne
+    @JoinColumn(name = "responsable", nullable = true)
+    private Usuario responsable;
+
     private java.sql.Date fechaCreacion;
 
-    public Tareas(String titulo, String descripcion, int estado, int responsable, java.sql.Date fechaCreacion) {
+
+    public Tarea(String titulo, String descripcion, int estado, int responsable, java.sql.Date fechaCreacion) {
         setTitulo(titulo);
         setDescripcion(descripcion);
         setEstado(estado);
@@ -31,7 +34,7 @@ public class Tareas {
         setFechaCreacion(fechaCreacion);
     }
 
-    public Tareas(){}
+    public Tarea(){}
 
     public void setId(int id) {
         this.id = id;
@@ -66,11 +69,18 @@ public class Tareas {
     }
 
     public int getResponsable() {
-        return responsable;
+        return this.responsable.getId();
     }
 
     public void setResponsable(int responsable) {
-        this.responsable = responsable;
+        //this.responsable.setId(responsable);
+        List<Usuario> lista_usu = Hibernate.idUsuario();
+        for (Usuario usu : lista_usu){
+            if (usu.getId() == responsable){
+                this.responsable = usu;
+            }
+        }
+
     }
 
     public java.sql.Date getFechaCreacion() {
@@ -88,7 +98,7 @@ public class Tareas {
                 ", titulo='" + titulo + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", estado='" + estado + '\'' +
-                ", responsable='" + responsable + '\'' +
+                ", responsable='" + responsable.getId() + '\'' +
                 ", fechaCreacion=" + fechaCreacion +
                 '}';
     }

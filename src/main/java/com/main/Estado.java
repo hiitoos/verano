@@ -4,23 +4,21 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table (name="estados")
-public class Estados {
+public class Estado implements Serializable {
     @Id
-    @Column (name="id")
     private int id;
-    @Column (name="nombre")
     private String nombre;
-    @Column (name="descripcion")
     private String descripcion;
 
-    public Estados(String nombre, String descripcion) {
+    public Estado(String nombre, String descripcion) {
         setNombre(nombre);
         setDescripcion(descripcion);
     }
-    public Estados(){}
+    public Estado(){}
 
     public int getId() {
         return id;

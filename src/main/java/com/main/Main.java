@@ -9,8 +9,8 @@ public class Main {
     static Scanner scanSt = new Scanner (System.in);
     static int id;
     static int n;
-    static List<Tareas> tareas;
-    static Tareas tareaActu = new Tareas();
+    static List<Tarea> tareas;
+    static Tarea tareaActu = new Tarea();
 
     public static void main(String[] args) {
         Hibernate hb = new Hibernate();
@@ -38,7 +38,7 @@ public class Main {
     }
 
     public static void crearTarea(){
-        Tareas newTarea = new Tareas();
+        Tarea newTarea = new Tarea();
         System.out.println("Introduce título");
         newTarea.setTitulo(scanSt.nextLine());
         System.out.println("Introduce descripcion");

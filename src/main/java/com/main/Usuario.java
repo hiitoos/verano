@@ -1,33 +1,31 @@
 package com.main;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="usuarios")
-public class Usuarios {
+public class Usuario {
     @Id
-    @Column(name="id")
     private int id;
-    @Column(name="nombre")
     private String nombre;
-    @Column(name="apellidos")
-    private String appellidos;
-    @Column(name="email")
+    private String apellidos;
     private String email;
 
-    public Usuarios(String nombre, String appellidos, String email) {
+    public Usuario(String nombre, String apellidos, String email) {
         setNombre(nombre);
-        setAppellidos(appellidos);
+        setApellidos(apellidos);
         setEmail(email);
     }
 
-    public Usuarios(){}
+    public Usuario(){}
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -38,12 +36,12 @@ public class Usuarios {
         this.nombre = nombre;
     }
 
-    public String getAppellidos() {
-        return appellidos;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setAppellidos(String appellidos) {
-        this.appellidos = appellidos;
+    public void setApellidos(String appellidos) {
+        this.apellidos = appellidos;
     }
 
     public String getEmail() {
@@ -54,12 +52,19 @@ public class Usuarios {
         this.email = email;
     }
 
+    @OneToMany(mappedBy = "responsable")
+    private Set<Tarea> tareas;
+
+    public Iterable<Tarea> getTareas(){
+        return tareas;
+    }
+
     @Override
     public String toString() {
         return "Usuarios{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", appellidos='" + appellidos + '\'' +
+                ", appellidos='" + apellidos + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
