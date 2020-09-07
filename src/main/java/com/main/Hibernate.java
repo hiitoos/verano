@@ -11,10 +11,12 @@ import javax.persistence.criteria.Root;
 public class Hibernate {
     private static EntityManager em;
     private static EntityManagerFactory emf;
+    private static CriteriaBuilder cb;
 
     public Hibernate() {
         this.emf = Persistence.createEntityManagerFactory("VeranoPersistence");
         this.em = this.emf.createEntityManager();
+        cb = em.getCriteriaBuilder();
     }
 
     public static void createTarea(Tarea newT) {
@@ -24,15 +26,12 @@ public class Hibernate {
     }
 
     public static void showT() {
-        List<Tarea> tareas = (List<Tarea>) em.createQuery("FROM Tarea").getResultList();
-        for(int i=0; i<tareas.size(); i++){
-            System.out.println("ID: " + tareas.get(i).getId());
-            System.out.println("Titulo: " + tareas.get(i).getTitulo());
-            System.out.println("Descripcion: " + tareas.get(i).getDescripcion());
-            System.out.println("Fecha Creacion: " + tareas.get(i).getFechaCreacion());
-            System.out.println("Responsable: " + tareas.get(i).getResponsable());
-            System.out.println("Estado: " + tareas.get(i).getEstado());
-            System.out.println("--------------------------------------------------------------------");
+        CriteriaQuery<Tarea> q = cb.createQuery(Tarea.class);
+        Root<Tarea> c = q.from(Tarea.class);
+        //Lo importante
+        List<Tarea> tarList = em.createQuery(q).getResultList();
+        for(Tarea trl : tarList){
+            System.out.println(trl.toString());
         }
     }
 
@@ -42,33 +41,27 @@ public class Hibernate {
     }
 
     public static void showUser() {
-        List<Usuario> users = (List<Usuario>) em.createQuery("FROM Usuario").getResultList();
-        for(int i=0; i<users.size(); i++){
-            System.out.println("ID: " + users.get(i).getId());
-            System.out.println("Nombre: " + users.get(i).getNombre());
-            System.out.println("Apellidos: " + users.get(i).getApellidos());
-            System.out.println("Email: " + users.get(i).getEmail());
-            System.out.println("--------------------------------------------------------------------");
+        CriteriaQuery<Usuario> q = cb.createQuery(Usuario.class);
+        Root<Usuario> c = q.from(Usuario.class);
+        //Lo importante
+        List<Usuario> usuList = em.createQuery(q).getResultList();
+        for(Usuario usl : usuList){
+            System.out.println(usl.toString());
         }
     }
 
     public static void updateTarea(Tarea tarea) {
-        //em.getTransaction().begin();
         em.merge(tarea);
-        //em.getTransaction().commit();
         System.out.println("¡¡Tarea actualizada!!");
     }
 
     public static void deleteTarea(int id) {
         Tarea tarea =  em.find(Tarea.class, id);
-        //em.getTransaction().begin();
         em.remove(tarea);
-        //em.getTransaction().commit();
         System.out.println("¡¡Tarea eliminada!!");
     }
 
     public static void readEstado() {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Estado> q = cb.createQuery(Estado.class);
         Root<Estado> c = q.from(Estado.class);
         //Lo importante
@@ -79,7 +72,6 @@ public class Hibernate {
     }
 
     public static void buscarUsuario(String usuario) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Usuario> q = cb.createQuery(Usuario.class);
         Root<Usuario> c = q.from(Usuario.class);
         //Lo importante
@@ -94,14 +86,12 @@ public class Hibernate {
     }
 
     public static List<Usuario> idUsuario(){
-        CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Usuario> q = cb.createQuery(Usuario.class);
         Root<Usuario> c = q.from(Usuario.class);
         //Lo importante
         List<Usuario> usuList = em.createQuery(q).getResultList();
         return usuList;
     }
-
 
     public static void close() {
         emf.close();
