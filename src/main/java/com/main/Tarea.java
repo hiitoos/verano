@@ -15,16 +15,11 @@ public class Tarea {
     @Column(name = "estados_id")
     private int estado;
 
-    /*@ManyToOne
-    @JoinColumn(name = "responsable", nullable = true)
-    private Usuario usuario;*/
-
     @ManyToOne
     @JoinColumn(name = "responsable", nullable = true)
     private Usuario responsable;
 
     private java.sql.Date fechaCreacion;
-
 
     public Tarea(String titulo, String descripcion, int estado, int responsable, java.sql.Date fechaCreacion) {
         setTitulo(titulo);
